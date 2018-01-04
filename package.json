@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha index.spec.js",
     "start": "node index.js"
   },
   "author": "",
@@ -17,5 +17,13 @@
     "should": "^13.2.0",
     "supertest": "^3.0.0"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MH-Lee/nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MH-Lee/nodejs/issues"
+  },
+  "homepage": "https://github.com/MH-Lee/nodejs#readme"
 }
