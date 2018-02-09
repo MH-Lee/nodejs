@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha index.spec.js",
-    "start": "node index.js"
+    "test": "NODE_ENV=test mocha api/user/user.spec.js -w",
+    "start": "node bin/www.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "sequelize": "^4.32.2",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
     "mocha": "^4.1.0",

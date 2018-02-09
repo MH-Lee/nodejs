@@ -1,8 +1,12 @@
 const request = require('supertest');
 const should = require('should')
-const app = require('./index');
+const app = require('../../');
+const models = require('../../models.js')
 
 describe('GET /users는', () => {
+  const users = [{name:'alice'}, {name:'bek'}, {name:'chris'}];
+  before(() => models.sequelize.sync({force:true}));
+  before(() => models.User.bulkCreate(users));
   describe('success', () => {
     it('유저 객체를 담은 배열로 응답', (done) => {
       request(app)
@@ -34,6 +38,9 @@ describe('GET /users는', () => {
 });
 
 describe('GET /user/:id는', () => {
+  const users = [{name:'alice'}, {name:'bek'}, {name:'chris'}];
+  before(() => models.sequelize.sync({force:true}));
+  before(() => models.User.bulkCreate(users));
   describe('suceess', () => {
     it('id가 1인 유저객체를 반환', (done) => {
       request(app)
@@ -61,6 +68,9 @@ describe('GET /user/:id는', () => {
 });
 
 describe('DELETE /users/:id', () => {
+  const users = [{name:'alice'}, {name:'bek'}, {name:'chris'}];
+  before(() => models.sequelize.sync({force:true}));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     it('204를 응답한다', (done) => {
       request(app)
@@ -80,6 +90,9 @@ describe('DELETE /users/:id', () => {
 });
 
 describe('POST /users', () => {
+  const users = [{name:'alice'}, {name:'bek'}, {name:'chris'}];
+  before(() => models.sequelize.sync({force:true}));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     let name='daniel',
         body;
@@ -119,6 +132,9 @@ describe('POST /users', () => {
 })
 
 describe('PUT /user/:id', () => {
+  const users = [{name:'alice'}, {name:'bek'}, {name:'chris'}];
+  before(() => models.sequelize.sync({force:true}));
+  before(() => models.User.bulkCreate(users));
   describe('성공시', () => {
     it('변경된 name을 응답한다.', (done) => {
       const name = 'chally';
@@ -155,7 +171,7 @@ describe('PUT /user/:id', () => {
     it('중복된 user일 경우 409을 응답한다.', (done) => {
       request(app)
          .put('/users/3')
-         .send({name:'bak'})
+         .send({name:'bek'})
          .expect(409)
          .end(done)
     });
